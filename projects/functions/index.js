@@ -70,9 +70,7 @@ returnFnResult(() => 'привет');
 */
 
 function returnCounter(number = 0) {
-  return function () {
-    return ++number;
-  };
+  return () => ++number;
 }
 const f = returnCounter(10);
 f();
@@ -108,9 +106,7 @@ returnArgumentsArray(1, 2, 3);
 */
 
 function bindFunction(fn, ...args) {
-  return function () {
-    return fn(...args);
-  };
+  return () => fn(...args);
 }
 
 export {
