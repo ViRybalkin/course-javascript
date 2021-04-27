@@ -54,8 +54,9 @@ function map(array, fn) {
    reduce([1, 2, 3], (all, current) => all + current) // 6
  */
 function reduce(array, fn, initial) {
-  let result = initial;
-  for (let i = 0; i < array.length; i++) {
+  let result = initial || array[0];
+
+  for (let i = +!initial; i < array.length; i++) {
     const element = array[i];
     result = fn(result, element, i, array);
   }
@@ -89,6 +90,13 @@ function upperProps(obj) {
    obj.foo = 2;
    console.log(obj.foo); // 4
  */
-function createProxy(obj) {}
+function createProxy(obj) {
+  return new Proxy(obj, {
+    set(target, handler, elem) {
+      const value = elem * elem;
+      return (target[handler] = value);
+    },
+  });
+}
 
 export { forEach, map, reduce, upperProps, createProxy };
