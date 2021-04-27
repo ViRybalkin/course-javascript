@@ -12,8 +12,7 @@
 
 function forEach(array, fn) {
   for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    fn(element, i, array);
+    fn(array[i], i, array);
   }
 }
 
@@ -26,20 +25,11 @@ function forEach(array, fn) {
  Пример:
    map([1, 2, 3], (el) => el ** 2) // [1, 4, 9]
  */
-// function map(array, fn) {
-//   const result = []
-//   for (let i = 0; i < array.length; i++) {
-//   result.push(fn(array[i],i,array));
-//   }
-//   return result
-//   }
 
 function map(array, fn) {
   const newArray = [];
   for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    const newValue = fn(element, i, array);
-    newArray.push(newValue);
+    newArray.push(fn(array[i], i, array));
   }
   return newArray;
 }
@@ -57,8 +47,7 @@ function reduce(array, fn, initial) {
   let result = initial || array[0];
 
   for (let i = +!initial; i < array.length; i++) {
-    const element = array[i];
-    result = fn(result, element, i, array);
+    result = fn(result, array[i], i, array);
   }
   return result;
 }
@@ -73,8 +62,7 @@ function reduce(array, fn, initial) {
 function upperProps(obj) {
   const newObj = [];
   for (const key in obj) {
-    const newValue = key.toUpperCase();
-    newObj.push(newValue);
+    newObj.push(key.toUpperCase());
   }
   return newObj;
 }
@@ -93,8 +81,7 @@ function upperProps(obj) {
 function createProxy(obj) {
   return new Proxy(obj, {
     set(target, handler, elem) {
-      const value = elem * elem;
-      return (target[handler] = value);
+      return (target[handler] = elem * elem);
     },
   });
 }
