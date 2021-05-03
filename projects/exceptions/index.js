@@ -21,7 +21,7 @@ function isAllTrue(array, fn) {
     throw new Error('fn is not a function');
   }
 
-  if (array.constructor !== Array || array.length === 0) {
+  if (!(array instanceof Array) || array.length === 0) {
     throw new Error('empty array');
   }
 
@@ -32,9 +32,6 @@ function isAllTrue(array, fn) {
   }
   return true;
 }
-
-// console.log(isAllTrue([1, 2, 3, 4, 5], (n) => n < 10)); // вернет true
-// console.log(isAllTrue([100, 2, 3, 4, 5], (n) => n < 10)); // вернет false
 
 /*
  Задание 2:
@@ -57,7 +54,7 @@ function isSomeTrue(array, fn) {
     throw new Error('fn is not a function');
   }
 
-  if (array.constructor !== Array || array.length === 0) {
+  if (!(array instanceof Array) || array.length === 0) {
     throw new Error('empty array');
   }
 
@@ -68,9 +65,6 @@ function isSomeTrue(array, fn) {
   }
   return false;
 }
-
-// console.log(isSomeTrue([1, 2, 30, 4, 5], (n) => n > 20)); // вернет true
-// console.log(isSomeTrue([1, 2, 3, 4, 5], (n) => n > 20)); // вернет false
 
 /*
  Задание 3:
@@ -98,7 +92,6 @@ function returnBadArguments(fn, ...args) {
   });
   return array;
 }
-// returnBadArguments((a) => a % 2 ,...[1,2,4,5,6,7,78,8])
 
 /*
  Задание 4:
@@ -159,7 +152,6 @@ function calculator(number = 0) {
   };
   return obj;
 }
-calculator(10);
 
 /* При решении задач, постарайтесь использовать отладчик */
 
