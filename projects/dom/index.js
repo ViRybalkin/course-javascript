@@ -14,7 +14,6 @@ function createDivWithText(text) {
   const element = document.createElement('div');
   document.body.appendChild(element);
   element.textContent = text;
-  console.log(element);
   return element;
 }
 createDivWithText('привет');
@@ -56,7 +55,6 @@ function findAllPSiblings(where) {
     if (node.nextElementSibling && node.nextElementSibling.tagName === 'P') {
       array.push(node);
     }
-    console.log(node.nextElementSiblings);
   }
   return array;
 }
@@ -120,10 +118,8 @@ function deleteTextNodes(where) {
  */
 function deleteTextNodesRecursive(where) {
   for (let i = 0; i < where.childNodes.length; i++) {
-    console.log(where.childNodes);
     if (where.childNodes[i].nodeType === 3) {
       where.childNodes[i].remove();
-      console.log(where.childNodes[i]);
       i--;
     } else if (where.childNodes[i].childNodes) {
       deleteTextNodesRecursive(where.childNodes[i]);
@@ -162,10 +158,8 @@ function collectDOMStat(root) {
   function collect(root) {
     for (const node of root.childNodes) {
       if (node.nodeType === 3) {
-        // console.log(node);
         object.texts++;
       } else if (node.nodeType === 1) {
-        // console.log(node.tagName);
         if (node.tagName in object.tags) {
           object.tags[node.tagName]++;
         } else {
@@ -183,10 +177,8 @@ function collectDOMStat(root) {
     }
   }
   collect(root);
-  console.log(object);
   return object;
 }
-console.log(collectDOMStat(document.body));
 /*
  Задание 8 *:
 
