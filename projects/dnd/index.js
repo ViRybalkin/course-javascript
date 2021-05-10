@@ -13,6 +13,7 @@
 
  Пример:
    const newDiv = document.createElement('div');
+   
    homeworkContainer.appendChild(newDiv);
  */
 import './dnd.html';
@@ -21,7 +22,20 @@ const homeworkContainer = document.querySelector('#app');
 
 document.addEventListener('mousemove', (e) => {});
 
-export function createDiv() {}
+export function createDiv() {
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('draggable-div');
+
+  newDiv.style.background =
+    '#' + (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase();
+  newDiv.style.top = Math.floor(Math.random() * 100) + '%';
+  newDiv.style.left = Math.floor(Math.random() * 100) + '%';
+  newDiv.style.width = Math.floor(Math.random() * 100) + 'px';
+  newDiv.style.height = Math.floor(Math.random() * 100) + 'px';
+  newDiv.draggable = true;
+
+  return newDiv;
+}
 
 const addDivButton = homeworkContainer.querySelector('#addDiv');
 
