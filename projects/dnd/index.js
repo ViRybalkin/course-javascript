@@ -34,6 +34,35 @@ export function createDiv() {
   newDiv.style.height = Math.floor(Math.random() * 100) + 'px';
   newDiv.draggable = true;
 
+  newDiv.onmousedown = function (event) {
+    const shiftX = event.clientX - newDiv.getBoundingClientRect().left;
+    const shiftY = event.clientY - newDiv.getBoundingClientRect().top;
+
+    newDiv.style.zIndex = 1000;
+
+    moveAt(event.pageX, event.pageY);
+
+    function moveAt(pageX, pageY) {
+      newDiv.style.left = pageX - shiftX + 'px';
+      newDiv.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    newDiv.onmouseup = function () {
+      document.removeEventListener('mousemove', onMouseMove);
+      newDiv.onmouseup = null;
+    };
+  };
+
+  newDiv.ondragstart = function () {
+    return false;
+  };
+
   return newDiv;
 }
 
